@@ -39,16 +39,26 @@ Dalam pengembangan aplikasi Flutter, seringkali Anda akan menggunakan kombinasi 
 <summary>2) Sebutkan seluruh widget yang kamu gunakan untuk menyelesaikan tugas ini dan jelaskan fungsinya masing-masing</summary>
 
  Widget yang digunakan untuk menyelesaikan tugas ini adalah sebagai berikut:
-    - `MyHomePage (StatelessWidget)` : Widget utama yang mewakili halaman beranda aplikasi. Ini mengatur tampilan utama aplikasi dan termasuk dalam Scaffold.
-    - `Scaffold`: Widget yang igunakan untuk membuat layout dasar aplikasi.
-    - `AppBar` : Widget yang digunakan untuk mengelola navigasi dan tindakan.
-    - `Column`: Widget yang digunakan untuk menempatkan child dalam satu kolom.
-    - `Container`: Widget yang digunakan untuk menyimpan dan mengelola widget lain.
-    -  `Material` : Widget yang digunakan sebagai wadah untuk setiap kartu dan memberikan warna latar belakang sesuai dengan jenis item yang ditentukan.
-    - `InkWell` : Widget yang memberikan respons terhadap sentuhan, sehingga pengguna dapat menekan kartu. Saat ditekan, SnackBar akan muncul.
-    - `Text`: Widget yang digunakan untuk menampilkan teks di aplikasi.
-    - `SnackBar`: Muncul ketika salah satu kartu ditekan dan memberikan umpan balik kepada pengguna.
-    - `Icon`: Widget yang digunakan untuk menampilkan ikon dari berbagai ikon yang sudah disediakan oleh Flutter.
+
+- `MyHomePage (StatelessWidget)` : Widget utama yang mewakili halaman beranda aplikasi. Ini mengatur tampilan utama aplikasi dan termasuk dalam Scaffold.
+
+- `Scaffold`: Widget yang igunakan untuk membuat layout dasar aplikasi.
+
+- `AppBar` : Widget yang digunakan untuk mengelola navigasi dan tindakan.
+
+- `Column`: Widget yang digunakan untuk menempatkan child dalam satu kolom.
+
+- `Container`: Widget yang digunakan untuk menyimpan dan mengelola widget lain.
+
+- `Material` : Widget yang digunakan sebagai wadah untuk setiap kartu dan memberikan warna latar belakang sesuai dengan jenis item yang ditentukan.
+
+- `InkWell` : Widget yang memberikan respons terhadap sentuhan, sehingga pengguna dapat menekan kartu. Saat ditekan, SnackBar akan muncul.
+
+- `Text`: Widget yang digunakan untuk menampilkan teks di aplikasi.
+
+- `SnackBar`: Muncul ketika salah satu kartu ditekan dan memberikan umpan balik kepada pengguna.
+
+- `Icon`: Widget yang digunakan untuk menampilkan ikon dari berbagai ikon yang sudah disediakan oleh Flutter.
 
 </details>
 
@@ -57,19 +67,19 @@ Dalam pengembangan aplikasi Flutter, seringkali Anda akan menggunakan kombinasi 
 
 - [x] Membuat sebuah program Flutter baru dengan tema inventory seperti tugas-tugas sebelumnya.
 
-    Buka terminal di direktori yang diinginkan lalu memasukkan command:
+    Membuka terminal di direktori yang diinginkan lalu memasukkan command:
     ```
     flutter create  stockio
     cd stockio
     ```
-    lalu untuk menjalankan proyek gunakan command:
+    Kemudian untuk menjalankan proyek gunakan command:
     ```
     flutter run
     ```
 
 - [x] Membuat tiga tombol sederhana dengan ikon dan teks untuk:
 
-  Tambahkan kode ini pada `menu.dart` didalam class `MyHomePage`:
+  Menambahkan kode ini pada `menu.dart` didalam class `MyHomePage`:
   ```
   @override
   Widget build(BuildContext context) {
@@ -125,7 +135,7 @@ Dalam pengembangan aplikasi Flutter, seringkali Anda akan menggunakan kombinasi 
   }
   ```
 
-  Lalu tambahkan kode untuk class `ShopItem` dan `ShopCard`:
+  Kemudian tambahkan kode untuk class `ShopItem` dan `ShopCard`:
 
   ```
     class ShopItem {
@@ -277,3 +287,5 @@ Dalam pengembangan aplikasi Flutter, seringkali Anda akan menggunakan kombinasi 
 
 Referensi:
 - https://pbp-fasilkom-ui.github.io/ganjil-2024/docs/tutorial-6
+- https://daengweb.id/belajar-flutter-basic-6-stateless-stateful-widget
+- https://www.barajacoding.or.id/mempelajari-widget-dasar-pada-flutter/
