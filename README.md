@@ -5,6 +5,156 @@ Kelas          : PBP C
 Link Aplikasi  : -
 
 ---
+# Tugas 8
+<details>
+<summary>1) Perbedaan antara Navigator.push() dan Navigator pushReplacement(), serta contoh penggunaan kedua metode tersebut yang tepat</summary>
+
+`Navigator.push()` dan `Navigator.pushReplacement()` adalah dua metode yang digunakan dalam Flutter untuk melakukan navigasi antar halaman (routes) di dalam aplikasi.
+
+1. **Navigator.push()**
+
+    `Navigator.push()` digunakan untuk menambahkan halaman baru ke dalam tumpukan navigasi. Ketika menggunakan `Navigator.push()`, halaman baru akan ditambahkan di atas halaman saat ini dalam tumpukan navigasi. Pada saat ingin kembali ke halaman sebelumnya, dapat menggunakan tombol kembali perangkat atau memanggil `Navigator.pop(context)`.
+
+    Contoh penggunaan `Navigator.push()`:
+    ```
+    Button(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SecondScreen()),
+        );
+      },
+    )
+    ```
+    Dalam contoh ini, ketika tombol ditekan, `SecondScreen()` ditambahkan ke dalam tumpukan navigasi di atas halaman saat ini.
+
+2. **Navigator.pushReplacement()**
+    `Navigator.pushReplacement()` digunakan untuk menambahkan halaman baru ke dalam tumpukan navigasi dan menggantikan halaman saat ini dengan halaman baru tersebut. Ini berguna ketika ingin menggantikan halaman saat ini dengan halaman baru dan menghindari pengguna dapat kembali ke halaman sebelumnya.
+
+    Contoh penggunaan `Navigator.pushReplacement()`:
+    ```
+    Button(
+      onPressed: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => NewScreen()),
+        );
+      },
+    )
+    ```
+    Dalam contoh ini, ketika tombol ditekan, `NewScreen()` ditambahkan ke dalam tumpukan navigasi, menggantikan halaman saat ini. Pengguna tidak akan dapat kembali ke halaman sebelumnya menggunakan tombol kembali perangkat setelah penggunaan `Navigator.pushReplacement()`.
+
+Jadi, perbedaan utama antara keduanya adalah bahwa `Navigator.push()` menambahkan halaman ke dalam tumpukan navigasi, sedangkan `Navigator.pushReplacement()` menggantikan halaman saat ini dengan halaman baru di dalam tumpukan navigasi. Pemilihan metode tergantung pada kebutuhan navigasi dan pengalaman pengguna yang diinginkan dalam aplikasi Flutter.
+
+</details>
+
+<details>
+<summary>2) Layout widget pada Flutter dan konteks penggunaannya</summary>
+
+Flutter memiliki berbagai jenis Layout Widgets yang digunakan untuk mengatur tata letak (layout) elemen-elemen dalam tampilan aplikasi. Berikut adalah beberapa Layout Widgets yang umum digunakan berserta konteks penggunaannya:
+
+1. **Container**
+
+    Container adalah widget serbaguna yang digunakan untuk mengatur tampilan elemen-elemen dalam kotak dengan tata letak yang lebih kompleks. Ini dapat berisi widget lain dan sering digunakan untuk mengatur tampilan elemen seperti gambar, teks, dan sebagainya dalam tata letak yang lebih terstruktur.
+
+2. **Column**
+
+    Column adalah widget yang digunakan untuk mengatur elemen-elemen secara vertikal. Ini sangat berguna saat ingin menumpuk elemen-elemen di dalam kolom, seperti daftar atau tumpukan widget.
+
+3. **Row**
+
+    Row adalah widget yang digunakan untuk mengatur elemen-elemen secara horizontal. Ini berguna ketika ingin mengatur elemen secara berdampingan dalam baris.
+
+4. **Expanded**
+
+    Expanded adalah widget yang digunakan untuk memberikan ruang ekstra pada widget anak di dalam Column atau Row. Ini berguna untuk mendistribusikan ruang yang tersedia secara merata di antara anak-anaknya.
+
+5. **ListView**
+
+    ListView adalah widget yang digunakan untuk membuat daftar gulir vertikal atau horizontal. Ini sangat berguna ketika memiliki daftar item yang panjang atau tumpukan widget yang perlu ditampilkan secara gulir.
+
+6. **Stack**
+
+    Stack adalah widget yang digunakan untuk menumpuk widget di atas satu sama lain. Ini berguna ketika ingin menggabungkan beberapa widget dan menumpuknya dalam tumpukan tampilan.
+
+7. **Card**
+
+    Card adalah widget yang digunakan untuk mengelilingi konten dalam bingkai yang berbeda. Ini digunakan ketika ingin membuat elemen seperti kartu, tegel, atau kartu info dalam tampilan.
+
+8. **Wrap**
+
+    Wrap adalah widget yang digunakan untuk mengatur widget dalam baris atau kolom, dan jika elemen-elemen melebihi ruang yang tersedia, mereka akan melanjutkan di baris atau kolom berikutnya. Ini berguna untuk mengatur elemen dengan ukuran yang bervariasi.
+
+9. **GridView**
+
+    GridView adalah widget yang digunakan untuk mengatur widget dalam bentuk kotak berbentuk grid. Ini berguna untuk menampilkan data dalam tata letak grid seperti galeri gambar atau daftar item dalam grid.
+
+10. **Table**
+
+    Table adalah widget yang digunakan untuk membuat tata letak berbasis tabel dengan baris dan kolom. Ini berguna saat ingin mengatur data dalam bentuk tabel.
+
+Pemilihan Layout Widget bergantung pada kebutuhan tampilan. Dapat menggabungkan dan menyusun widget-widget ini sesuai dengan kebutuhan tampilan aplikasi untuk mencapai tata letak yang diinginkan.
+
+</details>
+
+<details>
+<summary>3) Elemen input pada form yang dipakai pada tugas kali ini dan penjelasan mengapa menggunakan elemen input tersebut</summary>
+
+</details>
+
+<details>
+<summary>4) Penerapan clean architecture pada aplikasi Flutter</summary>
+
+Clean Architecture adalah pendekatan desain perangkat lunak yang membantu memisahkan tugas-tugas dan tanggung jawab dalam aplikasi agar lebih terstruktur, mudah diuji, dan mudah dipelihara. Penerapan Clean Architecture pada aplikasi Flutter melibatkan pembagian aplikasi menjadi beberapa lapisan, seperti Presentasi, Domain, dan Data, yang masing-masing memiliki tanggung jawab yang jelas. Di bawah ini adalah panduan umum untuk menerapkan Clean Architecture pada aplikasi Flutter:
+
+1. **Pembagian Lapisan**
+
+    * **Lapisan Presentasi (Presentation Layer)**: Ini adalah lapisan yang berisi semua komponen UI, seperti widget, tampilan, dan logika tampilan. Pada lapisan ini dapat menggunakan Flutter untuk membuat tampilan dan widget yang menghubungkan tampilan dengan lapisan Domain.
+    
+    * **Lapisan Domain (Domain Layer)**: Ini adalah inti dari aplikasi dan berisi logika bisnis atau aturan yang independen dari platform. Ini berisi kelas-kelas entitas, use cases, dan repository interfaces. Ini adalah lapisan yang paling penting dan harus bersifat platform-agnostic.
+    
+    * **Lapisan Data (Data Layer)**: Lapisan ini bertanggung jawab untuk berinteraksi dengan data dari sumber eksternal, seperti database, API, atau penyimpanan lokal. Lapisan Data mengimplementasikan repository yang didefinisikan di lapisan Domain.
+
+2. **Penggunaan Dependency Injection (DI)**
+
+    Kita dapat menggunakan library seperti `get_it`, `provider`, atau `kiwi` untuk mengatur dependensi di aplikasi Flutter. Ini memungkinkan untuk memisahkan lapisan Presentasi, Domain, dan Data serta menghubungkannya dengan mudah.
+
+3. **Use Cases (Interactors)**
+
+    Use Cases adalah komponen di lapisan Domain yang menjalankan logika bisnis aplikasi. Mereka berfungsi sebagai perantara antara Presentasi dan Data. Use Cases harus beroperasi pada objek-objek entitas dari lapisan Domain dan dapat mengambil objek-objek dari Data Layer melalui repository.
+
+4. **Repository Interfaces**
+
+    Repository adalah kontrak yang didefinisikan di lapisan Domain. Mereka mendefinisikan metode yang digunakan oleh Use Cases untuk mengambil dan menyimpan data. Implementasi konkret dari repository ditempatkan di lapisan Data.
+
+5. **Entity**
+
+    Entity adalah objek yang mewakili entitas utama dalam aplikasi. Mereka berisi properti dan logika yang relevan untuk entitas tersebut.
+
+6. **Menggunakan BLoC atau Provider**
+
+    Untuk mengelola keadaan aplikasi dan berbagi data antara lapisan Presentasi dan Domain dapat menggunakan BLoC (Business Logic Component) atau Provider, dua solusi yang populer dalam komunitas Flutter.
+
+7. **Tampilan Terpisah dari Logika Bisnis**
+
+    Pastikan logika bisnis tidak tercampur aduk dengan tampilan. Terapkan prinsip pemisahan tanggung jawab dengan baik, sehingga tampilan hanya bertanggung jawab untuk menampilkan data dan menerima masukan dari pengguna.
+
+Penerapan Clean Architecture pada aplikasi Flutter memungkinkan untuk membuat aplikasi yang lebih mudah diuji, dapat diperluas, dan memungkinkan perubahan platform dengan lebih mudah. Selain itu, hal ini membantu menghindari ketergantungan platform yang kuat dan menjaga kode bersih dan terstruktur.
+
+</details>
+
+<details>
+<summary>5) Cara mengimplementasikan checklist tugas secara step-by-step</summary>
+
+</details>
+
+Referensi:
+- https://pbp-fasilkom-ui.github.io/ganjil-2024/docs/tutorial-7
+- https://derangga.medium.com/flutter-clean-architecture-bloc-streams-89fc2c9146f
+- https://docs-flutter-dev.translate.goog/ui/layout?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=tc
+- 
+
+---
 # Tugas 7
 <details>
 <summary>1) Apa perbedaan utama antara stateless dan stateful widget dalam konteks pengembangan aplikasi Flutter?</summary>
@@ -31,7 +181,7 @@ Dalam pengembangan aplikasi Flutter, terdapat perbedaan utama antara stateless w
 
    Contoh penggunaan stateful widget adalah daftar scrollable, formulir input, aplikasi dengan halaman/tab yang dapat diubah, dan komponen yang memerlukan pembaruan berdasarkan data dinamis
 
-Dalam pengembangan aplikasi Flutter, seringkali Anda akan menggunakan kombinasi kedua jenis widget ini untuk membangun antarmuka pengguna yang dinamis. Stateless widget digunakan untuk bagian-bagian tampilan yang tidak berubah, sementara stateful widget digunakan untuk bagian-bagian yang memerlukan pembaruan saat keadaan berubah. Ini memungkinkan Anda untuk mengoptimalkan kinerja dan membangun antarmuka yang responsif
+Dalam pengembangan aplikasi Flutter, seringkali akan menggunakan kombinasi kedua jenis widget ini untuk membangun antarmuka pengguna yang dinamis. Stateless widget digunakan untuk bagian-bagian tampilan yang tidak berubah, sementara stateful widget digunakan untuk bagian-bagian yang memerlukan pembaruan saat keadaan berubah. Ini memungkinkan untuk mengoptimalkan kinerja dan membangun antarmuka yang responsif
 
 </details>
 

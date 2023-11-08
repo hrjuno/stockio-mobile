@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:stockio/widgets/left_drawer.dart';
+import 'package:stockio/widgets/shop_card.dart';
+import 'package:stockio/screens/shoplist_form.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
   final List<ShopItem> items = [
-    ShopItem("Lihat Item", Icons.checklist, Colors.orangeAccent),
-    ShopItem("Tambah Item", Icons.add_shopping_cart, Colors.orange),
+    ShopItem("Movie List", Icons.checklist, Colors.orangeAccent),
+    ShopItem("Add Movie", Icons.add_shopping_cart, Colors.orange),
     ShopItem("Logout", Icons.logout, Colors.deepOrangeAccent),
   ];
 
@@ -21,6 +24,8 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.deepOrange,
+      ),
+      drawer: const LeftDrawer(
       ),
       body: SingleChildScrollView(
         // Widget wrapper yang dapat discroll
@@ -63,14 +68,6 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class ShopItem {
-  final String name;
-  final IconData icon;
-  final Color color;
-
-  ShopItem(this.name, this.icon, this.color);
-}
-
 class ShopCard extends StatelessWidget {
   final ShopItem item;
 
@@ -87,7 +84,11 @@ class ShopCard extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!")));
+                content: Text("You have pressed the ${item.name} button!")));
+          if (item.name == "Add Movie") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ShopFormPage()));
+          }
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text
