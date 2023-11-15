@@ -100,6 +100,27 @@ Pemilihan Layout Widget bergantung pada kebutuhan tampilan. Dapat menggabungkan 
 <details>
 <summary>3) Elemen input pada form yang dipakai pada tugas kali ini dan penjelasan mengapa menggunakan elemen input tersebut</summary>
 
+1. **TextFormField untuk `Add Movie`**
+  
+    * Digunakan untuk mengambil input judul movie. 
+    * Menggunakan TextFormField karena merupakan input teks biasa. 
+    * Menyediakan dekorasi dengan placeholder ("Add Movie") dan label ("Add Movie"). 
+    * Menggunakan validasi untuk memastikan bahwa input tidak boleh kosong.
+
+2. **TextFormField untuk `Amount`**
+
+    * Digunakan untuk mengambil input jumlah movie. 
+    * Menggunakan TextFormField karena merupakan input teks untuk angka. 
+    * Menyediakan dekorasi dengan placeholder ("Amount") dan label ("Amount"). 
+    * Menggunakan validasi untuk memastikan bahwa input tidak boleh kosong dan harus berupa angka.
+
+3. **TextFormField untuk `Synopsis`**
+
+    * Digunakan untuk mengambil input sinopsis movie. 
+    * Menggunakan TextFormField karena merupakan input teks biasa. 
+    * Menyediakan dekorasi dengan placeholder ("Synopsis") dan label ("Synopsis"). 
+    * Menggunakan validasi untuk memastikan bahwa input tidak boleh kosong.
+
 </details>
 
 <details>
@@ -145,6 +166,306 @@ Penerapan Clean Architecture pada aplikasi Flutter memungkinkan untuk membuat ap
 
 <details>
 <summary>5) Cara mengimplementasikan checklist tugas secara step-by-step</summary>
+
+- [x] Membuat minimal satu halaman baru pada aplikasi, yaitu halaman formulir tambah item baru dengan ketentuan sebagai berikut:
+
+    Buat file baru bernama `shoplist_form.dart` dan isi dengan kode berikut:
+    ```
+    class ShopFormPage extends StatefulWidget {
+      const ShopFormPage({super.key});
+    
+      @override
+      State<ShopFormPage> createState() => _ShopFormPageState();
+    }
+    
+    class _ShopFormPageState extends State<ShopFormPage> {
+      final _formKey = GlobalKey<FormState>();
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold()
+    }
+    ```
+
+    - [x] Memakai minimal tiga elemen input, yaitu name, amount, description. Tambahkan elemen input sesuai dengan model pada aplikasi tugas Django yang telah kamu buat.
+  
+        Pada file `Shop_form.dart` didalam class `_ShopFormPageState` isi dengan kode berikut:
+        ```
+        ...
+        final _formKey = GlobalKey<FormState>();
+          String _name = "";
+          int _price = 0;
+          String _description = "";
+          @override
+          Widget build(BuildContext context) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Center(
+                  child: Text(
+                    'Add Movie Form',
+                  ),
+                ),
+                backgroundColor: Colors.deepOrange,
+                foregroundColor: Colors.white,
+              ),
+              drawer: const LeftDrawer(),
+              body: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                hintText: "Movie Title",
+                                labelText: "Movie Title",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                              ),
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _name = value!;
+                                });
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                hintText: "Amount",
+                                labelText: "Amount",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                              ),
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _price = int.parse(value!);
+                                });
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                hintText: "Synopsis",
+                                labelText: "Synopsis",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                              ),
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _description = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        ]
+                    )
+                ),
+              ),
+            );
+          }    
+        ...
+        ```
+  
+    - [x] Memiliki sebuah tombol Save.
+
+        Pada file `Shop_form.dart` didalam class `_ShopFormPageState`, bagian `return Scaffold(...)` isi dengan kode berikut:
+        ```
+        ...
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor:
+                MaterialStateProperty.all(Colors.deepOrange),
+              ),
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text('Movie saved successfully'),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                            children: [
+                              Text('Movie Title: $_name'),
+                              Text('Amount: $_amount'),
+                              Text('Synopsis: $_description')
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            child: const Text('OK'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                  _formKey.currentState!.reset();
+                }
+              },
+              child: const Text(
+                "Save",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ),
+        ...
+        ```  
+
+    - [x] Setiap elemen input di formulir juga harus divalidasi dengan ketentuan sebagai berikut:
+        - [x] Setiap elemen input tidak boleh kosong.
+
+            Pada file `Shop_form.dart` didalam class `_ShopFormPageState`, bagian `return Scaffold(...)`, dan setiap bagian `child: TextFormField(...)` isi dengan kode berikut:
+            ```
+            ...
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return "Title cannot be empty!";
+              }
+              return null;
+            },
+            ...
+            ```
+  
+        - [x] Setiap elemen input harus berisi data dengan tipe data atribut modelnya.
+
+            Pada file `Shop_form.dart` didalam class `_ShopFormPageState`, bagian `return Scaffold(...)`, bagian `child: TextFormField(...)`, dan bagian `validator: ` khusus untuk `amount` isi dengan kode berikut:
+            ```
+            ...
+            if (int.tryParse(value) == null) {
+              return "Amount must be a number!";
+            }
+            ...
+            ```
+
+- [x] Mengarahkan pengguna ke halaman form tambah item baru ketika menekan tombol Tambah Item pada halaman utama.
+
+    Pada file `menu.dart` didalam class `MyHomePage`, bagian `return Scaffold(...)` isi dengan kode berikut:
+    ```
+    ...
+    drawer: const LeftDrawer(),
+    ...
+    ```
+    Pada file `Shop_card.dart` didalam class `ShopCard`, bagian `return Material(...)` isi dengan kode berikut:
+    ```
+    ...
+    if (item.name == "Add Movie") {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const ShopFormPage()));
+    }
+    ...
+    ```
+
+- [x] Memunculkan data sesuai isi dari formulir yang diisi dalam sebuah pop-up setelah menekan tombol Save pada halaman formulir tambah item baru.
+
+    Pada file `Shop_form.dart` didalam class `_ShopFormPageState`, bagian `child: Column(...)`, dan bagian `Align(...)` isi dengan kode berikut:
+    ```
+    ...
+    return AlertDialog(
+      title: const Text('Movie saved successfully'),
+      content: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment:
+          CrossAxisAlignment.start,
+          children: [
+            Text('Movie Title: $_name'),
+            Text('Amount: $_amount'),
+            Text('Synopsis: $_description')
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          child: const Text('OK'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    );
+    ...
+    ```
+
+- [x] Membuat sebuah drawer pada aplikasi dengan ketentuan sebagai berikut:
+    - [x] Drawer minimal memiliki dua buah opsi, yaitu Halaman Utama dan Tambah Item.
+
+      Pada file `left_drawer.dart` didalam class `LeftDrawer`, bagian `return Drawer(...)` isi dengan kode berikut:
+      ```
+      ...
+      ListTile(
+            leading: const Icon(Icons.home_outlined),
+            title: const Text('Main Page'),
+            // Bagian redirection ke MyHomePage
+            onTap: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyHomePage(),
+                  ));
+            },
+          ),
+      ListTile(
+        leading: const Icon(Icons.add_shopping_cart),
+        title: const Text('Add Movie'),
+        // Bagian redirection ke ShopFormPage
+        onTap: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ShopFormPage(),
+              ));
+        },
+      ),
+      ...
+      ```
+
+    - [x] Ketika memiih opsi Halaman Utama, maka aplikasi akan mengarahkan pengguna ke halaman utama.
+
+        Pada file `left_drawer.dart` didalam class `LeftDrawer`, bagian `return Drawer(...)`, dan bagian `ListTile(...)` khusus untuk bagian `Main Page` isi dengan kode berikut:
+        ```
+        ...
+        onTap: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MyHomePage(),
+              ));
+        },
+        ...
+        ```
+
+    - [x] Ketika memiih opsi (Tambah Item), maka aplikasi akan mengarahkan pengguna ke halaman form tambah item baru.
+        
+        Pada file `left_drawer.dart` didalam class `LeftDrawer`, bagian `return Drawer(...)`, dan bagian `ListTile(...)` khusus untuk bagian `Add Movie` isi dengan kode berikut:
+        ```
+        ...
+        onTap: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ShopFormPage(),
+              ));
+        },
+        ...
+        ```
 
 </details>
 
