@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stockio/widgets/left_drawer.dart';
 import 'package:stockio/widgets/shop_card.dart';
 import 'package:stockio/screens/shoplist_form.dart';
+import 'package:stockio/screens/movie_list.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -88,6 +89,14 @@ class ShopCard extends StatelessWidget {
           if (item.name == "Add Movie") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const ShopFormPage()));
+          }
+          if (item.name == "Movie List") {
+            // Gunakan Navigator.push untuk melakukan navigasi ke MaterialPageRoute.
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MovieListPage(),
+                ));
           }
         },
         child: Container(

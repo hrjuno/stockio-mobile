@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stockio/screens/menu.dart';
 import 'package:stockio/screens/shoplist_form.dart';
+import 'package:stockio/screens/movie_list.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -58,6 +59,22 @@ class LeftDrawer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const ShopFormPage(),
+                  ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.checklist),
+            title: const Text('Movie List'),
+            // Bagian redirection ke ItemsListPage
+            onTap: () {
+              /*
+              Buatlah routing ke ItemsListPage di sini,
+              setelah halaman ItemsListPage sudah dibuat.
+              */
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MovieListPage(),
                   ));
             },
           ),

@@ -473,7 +473,6 @@ Referensi:
 - https://pbp-fasilkom-ui.github.io/ganjil-2024/docs/tutorial-7
 - https://derangga.medium.com/flutter-clean-architecture-bloc-streams-89fc2c9146f
 - https://docs-flutter-dev.translate.goog/ui/layout?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=tc
-- 
 
 ---
 # Tugas 7
