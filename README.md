@@ -29,9 +29,13 @@ Instance CookieRequest perlu dibagikan ke semua komponen di aplikasi Flutter kar
 
 Mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter melibatkan beberapa langkah. Berikut adalah dua pendekatan yang umum digunakan:
 
-1. Menggunakan Backendless SDK (Server-Side): Backendless adalah platform backend as a service yang menyediakan layanan untuk mengelola data dan otentikasi pengguna. Dalam hal ini, menggunakan Backendless SDK for Flutter. Untuk mengambil data, kita menggunakan API pengambilan data Backendless.
+1. **Menggunakan Backendless SDK (Server-Side):** 
 
-2. Menggunakan HTTP Package (Client-Side): HTTP Package adalah package yang menyediakan API untuk mengirim permintaan HTTP. Dalam hal ini, menggunakan package http. Untuk mengambil data, kita menggunakan API pengambilan data package http. Setelah data diterima, kita dapat mengubahnya menjadi objek Dart menggunakan package convert.
+Backendless adalah platform backend as a service yang menyediakan layanan untuk mengelola data dan otentikasi pengguna. Dalam hal ini, menggunakan Backendless SDK for Flutter. Untuk mengambil data, kita menggunakan API pengambilan data Backendless.
+
+2. **Menggunakan HTTP Package (Client-Side):** 
+
+HTTP Package adalah package yang menyediakan API untuk mengirim permintaan HTTP. Dalam hal ini, menggunakan package http. Untuk mengambil data, kita menggunakan API pengambilan data package http. Setelah data diterima, kita dapat mengubahnya menjadi objek Dart menggunakan package convert.
 
 </details>
 
@@ -60,16 +64,16 @@ Proses autentikasi antara aplikasi Flutter dan backend Django melibatkan beberap
 <details>
 <summary>5) Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing</summary>
 
-1. Scaffold: Kerangka dasar aplikasi Flutter. 
-2. AppBar: Baris judul di bagian atas layar. 
-3. LeftDrawer: Widget kustom yang kemungkinan berisi navigasi atau tautan. 
-4. FutureBuilder: Menggunakan hasil dari Future (fetchProduct()) untuk membangun antarmuka pengguna berdasarkan status Future. 
-5. Column: Wadah vertikal untuk tata letak. 
-6. ListView.builder: Membuat daftar elemen dengan jumlah dinamis. 
-7. Container: Wadah elemen-elemen UI dengan margin dan padding. 
-8. Text: Menampilkan teks pada antarmuka pengguna. 
-9. SizedBox: Memberikan spasi vertikal. 
-10. ElevatedButton: Tombol dengan latar belakang yang diangkat, digunakan untuk kembali ke halaman produk.
+1. **Scaffold**: Kerangka dasar aplikasi Flutter. 
+2. **AppBar**: Baris judul di bagian atas layar. 
+3. **LeftDrawer**: Widget kustom yang kemungkinan berisi navigasi atau tautan. 
+4. **FutureBuilder**: Menggunakan hasil dari Future (fetchProduct()) untuk membangun antarmuka pengguna berdasarkan status Future. 
+5. **Column**: Wadah vertikal untuk tata letak. 
+6. **ListView.builder**: Membuat daftar elemen dengan jumlah dinamis. 
+7. **Container**: Wadah elemen-elemen UI dengan margin dan padding. 
+8. **Text**: Menampilkan teks pada antarmuka pengguna. 
+9. **SizedBox**: Memberikan spasi vertikal. 
+10. **ElevatedButton**: Tombol dengan latar belakang yang diangkat, digunakan untuk kembali ke halaman produk.
 
 </details>
 
