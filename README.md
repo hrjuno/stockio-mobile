@@ -9,7 +9,9 @@ Link Aplikasi  : -
 <details>
 <summary>1) Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?</summary>
 
+Pengambilan data JSON sendiri tidak memerlukan pembuatan model terlebih dahulu. JSON (JavaScript Object Notation) adalah format data ringan yang digunakan untuk pertukaran data antar aplikasi. Jadi, Anda dapat mengambil data JSON langsung tanpa membangun model khusus.
 
+Namun, apakah Anda memerlukan pembuatan model tergantung pada tujuan pengambilan data tersebut. Jika Anda hanya ingin membaca atau mengambil data dari file JSON atau endpoint API, Anda tidak perlu membuat model. Anda dapat menggunakan bahasa pemrograman atau alat yang mendukung manipulasi data JSON, seperti Python dengan library json atau JavaScript dengan JSON.parse().
 
 </details>
 
@@ -25,15 +27,49 @@ Instance CookieRequest perlu dibagikan ke semua komponen di aplikasi Flutter kar
 <details>
 <summary>3) Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter</summary>
 
+Mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter melibatkan beberapa langkah. Berikut adalah dua pendekatan yang umum digunakan:
+
+1. Menggunakan Backendless SDK (Server-Side): Backendless adalah platform backend as a service yang menyediakan layanan untuk mengelola data dan otentikasi pengguna. Dalam hal ini, menggunakan Backendless SDK for Flutter. Untuk mengambil data, kita menggunakan API pengambilan data Backendless.
+
+2. Menggunakan HTTP Package (Client-Side): HTTP Package adalah package yang menyediakan API untuk mengirim permintaan HTTP. Dalam hal ini, menggunakan package http. Untuk mengambil data, kita menggunakan API pengambilan data package http. Setelah data diterima, kita dapat mengubahnya menjadi objek Dart menggunakan package convert.
+
 </details>
 
 <details>
-<summary>4) elaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter</summary>
+<summary>4) Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter</summary>
+
+Proses autentikasi antara aplikasi Flutter dan backend Django melibatkan beberapa langkah kunci untuk memastikan keamanan dan kesinambungan data.
+
+1. **Input Data**:
+   - Pengguna memasukkan data akun (seperti username dan password) di aplikasi Flutter.
+
+2. **Kirim ke Django**:
+   - Flutter mengirimkan data akun tersebut ke backend Django menggunakan HTTP request (biasanya `POST`).
+
+3. **Proses di Django**:
+   - Backend Django menerima data tersebut dan melakukan proses autentikasi. Ini melibatkan pengecekan ke database untuk mencocokkan data pengguna.
+
+4. **Respons ke Flutter**:
+   - Setelah memproses data, Django mengirimkan respons ke aplikasi Flutter. Respons ini bisa berupa konfirmasi keberhasilan atau gagalnya proses autentikasi.
+
+5. **Tampilan di Flutter**:
+   - Berdasarkan respons dari Django, Flutter kemudian menampilkan hasil autentikasi. Jika berhasil, aplikasi mungkin akan membuka halaman menu utama atau dashboard. Jika gagal, aplikasi mungkin akan menampilkan pesan error atau meminta pengguna untuk mencoba lagi.
 
 </details>
 
 <details>
 <summary>5) Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing</summary>
+
+1. Scaffold: Kerangka dasar aplikasi Flutter. 
+2. AppBar: Baris judul di bagian atas layar. 
+3. LeftDrawer: Widget kustom yang kemungkinan berisi navigasi atau tautan. 
+4. FutureBuilder: Menggunakan hasil dari Future (fetchProduct()) untuk membangun antarmuka pengguna berdasarkan status Future. 
+5. Column: Wadah vertikal untuk tata letak. 
+6. ListView.builder: Membuat daftar elemen dengan jumlah dinamis. 
+7. Container: Wadah elemen-elemen UI dengan margin dan padding. 
+8. Text: Menampilkan teks pada antarmuka pengguna. 
+9. SizedBox: Memberikan spasi vertikal. 
+10. ElevatedButton: Tombol dengan latar belakang yang diangkat, digunakan untuk kembali ke halaman produk.
 
 </details>
 
@@ -520,7 +556,8 @@ Instance CookieRequest perlu dibagikan ke semua komponen di aplikasi Flutter kar
 
 Referensi:
 - https://pbp-fasilkom-ui.github.io/ganjil-2024/docs/tutorial-8
-- 
+- https://www.niagahoster.co.id/blog/cookies-adalah/
+- https://www.gamelab.id/news/1792-tutorial-menampilkan-data-api-menggunakan-flutter
 
 ---
 # Tugas 8
