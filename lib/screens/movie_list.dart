@@ -1,61 +1,167 @@
-import 'package:stockio/widgets/left_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:stockio/models/product.dart';
+import 'package:stockio/widgets/left_drawer.dart';
 
-class MovieListPage extends StatelessWidget {
-  const MovieListPage({Key? key}) : super(key: key);
+import 'movie_detail.dart';
 
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Center(
-            child: Text(
-              'Your Movie List',
-            ),
-          ),
-          backgroundColor: Colors.deepOrange,
-          foregroundColor: Colors.white,
-        ),
-        drawer: const LeftDrawer(),
-        body: ItemListPage(),
-      ),
-    );
-  }
+class ProductPage extends StatefulWidget {
+  const ProductPage({Key? key}) : super(key: key);
+
+  @override
+  _ProductPageState createState() => _ProductPageState();
 }
 
-class ItemListPage extends StatelessWidget {
+class _ProductPageState extends State<ProductPage> {
+  TextEditingController _searchController = TextEditingController();
+  List<Product> _allProducts = [];
+  List<Product> _filteredProducts = [];
+
+  Future<List<Product>> fetchProduct() async {
+    // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+    var url = Uri.parse(
+        'http://10.0.2.2:8000/json/');
+    var response = await http.get(
+      url,
+      headers: {"Content-Type": "application/json"},
+    );
+
+    // melakukan decode response menjadi bentuk json
+    var data = jsonDecode(utf8.decode(response.bodyBytes));
+
+    // melakukan konversi data json menjadi object Product
+    List<Product> list_product = [];
+    for (var d in data) {
+      if (d != null) {
+        list_product.add(Product.fromJson(d));
+      }
+    }
+    return list_product;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_filterProducts);
+  }
+
+  void _filterProducts() {
+    String searchTerm = _searchController.text.toLowerCase();
+    setState(() {
+      _filteredProducts = _allProducts
+          .where((product) =>
+      product.fields.name.toLowerCase().contains(searchTerm) ||
+          product.fields.description.toLowerCase().contains(searchTerm))
+          .toList();
+    });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    int itemCount = listItem.length;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text('You have $itemCount movies'),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: itemCount,
-            itemBuilder: (context, index) {
-              Item currentItem = listItem[index];
-              return Card(
-                // Add border and padding to the ListTile
-                elevation: 2.0,
-                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                child: ListTile(
-                  title: Text(currentItem.name),
-                  subtitle: Text(
-                    'Amount: ${currentItem.amount}, Description: ${currentItem.description}',
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Product'),
+      ),
+      drawer: const LeftDrawer(),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: TextField(
+                controller: _searchController,
+                onChanged: (value) {
+                  _filterProducts();
+                },
+                decoration: InputDecoration(
+                  hintText: "Search",
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-              );
-            },
+              ),
+            ),
           ),
-        ),
-      ],
+          Expanded(
+            child: FutureBuilder(
+              future: fetchProduct(),
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (!snapshot.hasData || snapshot.data.isEmpty) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Data doesn't exist.",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        SizedBox(height: 8),
+                      ],
+                    ),
+                  );
+                } else {
+                  return ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (_, index) => InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailItem(
+                                    item: snapshot.data![index],
+                                  )
+                              )
+                          );
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${snapshot.data![index].fields.name}",
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "Amount: ${snapshot.data![index].fields.amount.toStringAsFixed(2)}",
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                  );
+                }
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
