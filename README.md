@@ -31,11 +31,11 @@ Mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter melib
 
 1. **Menggunakan Backendless SDK (Server-Side):** 
 
-Backendless adalah platform backend as a service yang menyediakan layanan untuk mengelola data dan otentikasi pengguna. Dalam hal ini, menggunakan Backendless SDK for Flutter. Untuk mengambil data, kita menggunakan API pengambilan data Backendless.
+    Backendless adalah platform backend as a service yang menyediakan layanan untuk mengelola data dan otentikasi pengguna. Dalam hal ini, menggunakan Backendless SDK for Flutter. Untuk mengambil data, kita menggunakan API pengambilan data Backendless.
 
 2. **Menggunakan HTTP Package (Client-Side):** 
 
-HTTP Package adalah package yang menyediakan API untuk mengirim permintaan HTTP. Dalam hal ini, menggunakan package http. Untuk mengambil data, kita menggunakan API pengambilan data package http. Setelah data diterima, kita dapat mengubahnya menjadi objek Dart menggunakan package convert.
+    HTTP Package adalah package yang menyediakan API untuk mengirim permintaan HTTP. Dalam hal ini, menggunakan package http. Untuk mengambil data, kita menggunakan API pengambilan data package http. Setelah data diterima, kita dapat mengubahnya menjadi objek Dart menggunakan package convert.
 
 </details>
 
@@ -45,35 +45,40 @@ HTTP Package adalah package yang menyediakan API untuk mengirim permintaan HTTP.
 Proses autentikasi antara aplikasi Flutter dan backend Django melibatkan beberapa langkah kunci untuk memastikan keamanan dan kesinambungan data.
 
 1. **Input Data**:
-   - Pengguna memasukkan data akun (seperti username dan password) di aplikasi Flutter.
+   
+    Pengguna memasukkan data akun (seperti username dan password) di aplikasi Flutter.
 
 2. **Kirim ke Django**:
-   - Flutter mengirimkan data akun tersebut ke backend Django menggunakan HTTP request (biasanya `POST`).
+  
+    Flutter mengirimkan data akun tersebut ke backend Django menggunakan HTTP request (biasanya `POST`).
 
 3. **Proses di Django**:
-   - Backend Django menerima data tersebut dan melakukan proses autentikasi. Ini melibatkan pengecekan ke database untuk mencocokkan data pengguna.
+  
+    Backend Django menerima data tersebut dan melakukan proses autentikasi. Ini melibatkan pengecekan ke database untuk mencocokkan data pengguna.
 
 4. **Respons ke Flutter**:
-   - Setelah memproses data, Django mengirimkan respons ke aplikasi Flutter. Respons ini bisa berupa konfirmasi keberhasilan atau gagalnya proses autentikasi.
+  
+    Setelah memproses data, Django mengirimkan respons ke aplikasi Flutter. Respons ini bisa berupa konfirmasi keberhasilan atau gagalnya proses autentikasi.
 
 5. **Tampilan di Flutter**:
-   - Berdasarkan respons dari Django, Flutter kemudian menampilkan hasil autentikasi. Jika berhasil, aplikasi mungkin akan membuka halaman menu utama atau dashboard. Jika gagal, aplikasi mungkin akan menampilkan pesan error atau meminta pengguna untuk mencoba lagi.
+    
+    Berdasarkan respons dari Django, Flutter kemudian menampilkan hasil autentikasi. Jika berhasil, aplikasi mungkin akan membuka halaman menu utama atau dashboard. Jika gagal, aplikasi mungkin akan menampilkan pesan error atau meminta pengguna untuk mencoba lagi.
 
 </details>
 
 <details>
 <summary>5) Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing</summary>
 
-1. **Scaffold**: Kerangka dasar aplikasi Flutter. 
-2. **AppBar**: Baris judul di bagian atas layar. 
-3. **LeftDrawer**: Widget kustom yang kemungkinan berisi navigasi atau tautan. 
-4. **FutureBuilder**: Menggunakan hasil dari Future (fetchProduct()) untuk membangun antarmuka pengguna berdasarkan status Future. 
-5. **Column**: Wadah vertikal untuk tata letak. 
-6. **ListView.builder**: Membuat daftar elemen dengan jumlah dinamis. 
-7. **Container**: Wadah elemen-elemen UI dengan margin dan padding. 
-8. **Text**: Menampilkan teks pada antarmuka pengguna. 
-9. **SizedBox**: Memberikan spasi vertikal. 
-10. **ElevatedButton**: Tombol dengan latar belakang yang diangkat, digunakan untuk kembali ke halaman produk.
+  1. **Scaffold**: Kerangka dasar aplikasi Flutter. 
+  2. **AppBar**: Baris judul di bagian atas layar. 
+  3. **LeftDrawer**: Widget kustom yang kemungkinan berisi navigasi atau tautan. 
+  4. **FutureBuilder**: Menggunakan hasil dari Future (fetchProduct()) untuk membangun antarmuka pengguna berdasarkan status Future. 
+  5. **Column**: Wadah vertikal untuk tata letak. 
+  6. **ListView.builder**: Membuat daftar elemen dengan jumlah dinamis. 
+  7. **Container**: Wadah elemen-elemen UI dengan margin dan padding. 
+  8. **Text**: Menampilkan teks pada antarmuka pengguna. 
+  9. **SizedBox**: Memberikan spasi vertikal. 
+  10. **ElevatedButton**: Tombol dengan latar belakang yang diangkat, digunakan untuk kembali ke halaman produk.
 
 </details>
 
